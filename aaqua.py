@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import os
-from geopy.distance import geodesic
 import folium
 from streamlit_folium import st_folium
 import base64
@@ -529,4 +528,5 @@ st.markdown(
     - Seek medical help if needed.
     """
 )
+
 st.caption("🧠 Powered by AquaAlert — Bacuag Flood Awareness Platform")
