@@ -3,6 +3,38 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import os
+import subprocess
+import sys
+
+# -------------------------
+# Install missing packages if needed
+# -------------------------
+def install_missing_packages():
+    missing_packages = []
+    
+    # Check for folium
+    try:
+        import folium
+    except ImportError:
+        missing_packages.append('folium')
+    
+    # Check for streamlit_folium
+    try:
+        from streamlit_folium import st_folium
+    except ImportError:
+        missing_packages.append('streamlit-folium')
+    
+    # Install missing packages
+    if missing_packages:
+        st.warning(f"Installing missing packages: {', '.join(missing_packages)}...")
+        for package in missing_packages:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        st.success("Packages installed successfully! Please refresh the page.")
+        st.stop()
+
+install_missing_packages()
+
+# Now import the packages
 import folium
 from streamlit_folium import st_folium
 import base64
